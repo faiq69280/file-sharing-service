@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: file-sharing-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/file_sharing_service_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/file_sharing_service_db
+    user: postgres
+    password: postgres
+    baseline-on-migrate: true
+    enabled: true
+
+jwt:
+  secret-key: 'my-secret-key'
+#server:
+#  servlet:
+#    session:
+#      cookie:
+#        same-site: strict
