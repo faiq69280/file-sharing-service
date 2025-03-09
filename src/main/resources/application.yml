@@ -28,6 +28,12 @@ spring:
 
 jwt:
   secret-key: 'my-secret-key'
+
+minio:
+  url: http://localhost:9000  # Change if deployed remotely
+  access-key: 8DLA03fQEIoTLRiqYq6r
+  secret-key: vKcfsrFYX1GP0g3hSysSj9BIpa2PuJEYQX7AdVyS
+  bucket-name: file-sharing-bucket
 #server:
 #  servlet:
 #    session:
