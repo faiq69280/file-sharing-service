@@ -29,7 +29,7 @@ public class SseEventEmitterService implements ConsumerNotifierService {
         SseEmitter emitter = emitters.get(notificationObject.eventId());
         if (emitter != null) {
             try {
-                emitter.send(SseEmitter.event().name("uploadStatus").data(notificationObject));
+                emitter.send(SseEmitter.event().name(notificationObject.eventType()).data(notificationObject));
                 emitter.complete();
             } catch (IOException e) {
                 emitter.completeWithError(e);

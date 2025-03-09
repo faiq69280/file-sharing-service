@@ -81,7 +81,7 @@ public class FileStorageService {
 
         consumerNotifierService.notify(new EventDTO(eventId, new FileStatusDTO(fileName,
                 new Date(System.currentTimeMillis()),
-                FileTransferStatus.COMPLETE)));
+                FileTransferStatus.COMPLETE), "uploadStatus"));
     }
 
 
