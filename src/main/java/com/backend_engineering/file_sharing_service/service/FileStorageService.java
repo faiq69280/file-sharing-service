@@ -84,7 +84,6 @@ public class FileStorageService {
                 FileTransferStatus.COMPLETE), "uploadStatus"));
     }
 
-
     private String getPreSignedUrl(String fileName, int expiry) throws Exception {
         return minioClient.getPresignedObjectUrl(
                 GetPresignedObjectUrlArgs.builder()

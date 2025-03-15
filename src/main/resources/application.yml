@@ -31,8 +31,8 @@ jwt:
 
 minio:
   url: http://localhost:9000  # Change if deployed remotely
-  access-key: 8DLA03fQEIoTLRiqYq6r
-  secret-key: vKcfsrFYX1GP0g3hSysSj9BIpa2PuJEYQX7AdVyS
+  access-key: DrwbzeeD2UBh0YZa7eht
+  secret-key: dB3fYNfIhE4DBupnEey2J8BFSEsXeI2Oe5n4R9xx
   bucket-name: file-sharing-bucket
 #server:
 #  servlet:

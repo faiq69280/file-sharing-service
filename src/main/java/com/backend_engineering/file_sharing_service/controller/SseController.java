@@ -30,7 +30,7 @@ public class SseController extends AbstractController {
         return new ResponseEntity<>(UUID.randomUUID().toString(), HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*", allowCredentials = "true")
+    @CrossOrigin(origins = "*")
     @GetMapping("/subscribe/{eventId}")
     public SseEmitter subscribe(@PathVariable("eventId") String eventId) {
         return sseEventEmitterService.createEmitter(eventId);
