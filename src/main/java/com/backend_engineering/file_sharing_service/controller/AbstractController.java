@@ -24,5 +24,10 @@ public abstract class AbstractController {
         return new ResponseEntity<>(fileStorageService.upload(userName, file, consumerNotifierService, eventId), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("download_url")
+    public ResponseEntity<String> downloadUrl(@RequestParam("fileUuid") String fileUuid) throws Exception {
+        return new ResponseEntity<>(fileStorageService.getDownloadUrl(fileUuid), HttpStatus.OK);
+    }
+
     public abstract ConsumerNotifierService getConsumerNotifierService();
 }
