@@ -7,7 +7,9 @@ import com.backend_engineering.file_sharing_service.entity.File;
 import com.backend_engineering.file_sharing_service.entity.User;
 import com.backend_engineering.file_sharing_service.repository.FileRepository;
 import com.backend_engineering.file_sharing_service.repository.UserRepository;
+import io.micrometer.common.util.StringUtils;
 import io.minio.*;
+import io.minio.errors.ErrorResponseException;
 import io.minio.http.Method;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
@@ -84,6 +86,24 @@ public class FileStorageService {
                 FileTransferStatus.COMPLETE), "uploadStatus"));
     }
 
+    public String getDownloadUrl(String fileUuid) throws Exception {
+        if (StringUtils.isEmpty(fileUuid)) { throw new IllegalArgumentException("Empty/Null fileUuid provided"); }
+        File file = fileRepository.findById(fileUuid).orElseThrow(() -> new IllegalArgumentException("A file with uuid[%s] doesn't exist".formatted(fileUuid)));
+        //can be handled in controller advice
+        try {
+            minioClient.statObject(
+                    StatObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(file.getFileName())
+                            .build()
+            );
+        }
+        catch(ErrorResponseException errorResponseException) {
+            //throw a custom exception
+        }
+        //write the url into cache before sending it.
+        return getPreSignedUrl(file.getFileName(), 10);
+    }
 
     private String getPreSignedUrl(String fileName, int expiry) throws Exception {
         return minioClient.getPresignedObjectUrl(
@@ -91,7 +111,7 @@ public class FileStorageService {
                         .method(Method.GET)  // Change to PUT for uploads
                         .bucket(bucketName)
                         .object(fileName)  // File must exist in the bucket
-                        .expiry(expiry, TimeUnit.SECONDS)  // URL expiration time
+                        .expiry(expiry, TimeUnit.MINUTES)  // URL expiration time
                         .build()
         );
     }
