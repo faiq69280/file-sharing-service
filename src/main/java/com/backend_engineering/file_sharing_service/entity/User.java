@@ -18,6 +18,9 @@ public class User extends BaseEntity {
     @Column
     private String email;
 
+    @Column
+    private  List<String> roles;
+
     @OneToMany(mappedBy = "parentUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<File> ownedFiles;
 
@@ -55,4 +58,11 @@ public class User extends BaseEntity {
         this.ownedFiles = ownedFiles;
     }
 
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 }
