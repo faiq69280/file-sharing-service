@@ -101,7 +101,7 @@ public class FileStorageService {
         catch(ErrorResponseException errorResponseException) {
             //throw a custom exception
         }
-        //write the url into cache before sending it.
+        //TODO: write the url into cache before sending it.
         return getPreSignedUrl(file.getFileName(), 10);
     }
 
@@ -115,5 +115,4 @@ public class FileStorageService {
                         .build()
         );
     }
-
 }

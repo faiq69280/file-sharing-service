@@ -3,16 +3,15 @@ package com.backend_engineering.file_sharing_service.controller;
 import com.backend_engineering.file_sharing_service.dto.FileStatusDTO;
 import com.backend_engineering.file_sharing_service.service.ConsumerNotifierService;
 import com.backend_engineering.file_sharing_service.service.FileStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-public abstract class AbstractController {
+public abstract class AbstractFileHandlingController {
 
     private FileStorageService fileStorageService;
-    AbstractController(FileStorageService fileStorageService) {
+    AbstractFileHandlingController(FileStorageService fileStorageService) {
         this.fileStorageService = fileStorageService;
     }
 
@@ -30,4 +29,5 @@ public abstract class AbstractController {
     }
 
     public abstract ConsumerNotifierService getConsumerNotifierService();
+    protected void someMethod() {}
 }

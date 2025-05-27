@@ -41,5 +41,6 @@ public abstract class BaseAuthenticationFilter extends OncePerRequestFilter {
                 new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         return authenticationManager.authenticate(authToken);
     }
+
     protected abstract UserDetails extractCredentials(HttpServletRequest request);
 }

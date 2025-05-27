@@ -49,5 +49,4 @@ public class Config {
     @Bean BaseAuthenticationFilter authenticationFilter(UserService userService) {
         return new JwtAuthenticationFilter(userService);
     }
-
 }

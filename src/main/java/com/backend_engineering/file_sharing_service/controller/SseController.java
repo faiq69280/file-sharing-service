@@ -12,9 +12,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("sse")
-public class SseController extends AbstractController {
-
+public class SseController extends AbstractFileHandlingController {
     SseEventEmitterService sseEventEmitterService;
+
     public SseController(FileStorageService fileStorageService, SseEventEmitterService sseEventEmitterService) {
         super(fileStorageService);
         this.sseEventEmitterService = sseEventEmitterService;

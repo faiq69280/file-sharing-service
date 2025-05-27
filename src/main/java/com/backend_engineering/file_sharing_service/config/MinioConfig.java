@@ -16,7 +16,6 @@ public class MinioConfig {
     @Value("${minio.url}")
     private String url;
 
-
     @Bean
     public MinioClient minioClient() {
         return MinioClient.builder().
